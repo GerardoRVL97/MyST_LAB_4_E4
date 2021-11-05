@@ -43,3 +43,13 @@ def historical_spread(ob_data):
     df_ts_tob["spread"] = spreads
     return df_ts_tob
 
+def detect_outliers(spread_data):
+    spread_data["Outlier"] = True
+    for i in spread_data["hour"].unique():
+        Q1 = spread_data.query("hour == " + str(i))["spread"].quantile(0.25)
+        Q3 = spread_data.query("hour == " + str(i))["spread"].quantile(0.75)
+        IQR = Q3 - Q1
+        for i in spread_data.query(
+                "(hour == " + str(i) + ") and ((@Q1 - 1.5 * @IQR) <= spread <= (@Q3 + 1.5 * @IQR))").index:
+            spread_data.at[i, 'Outlier'] = False
+    return spread_data

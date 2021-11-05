@@ -45,5 +45,5 @@ def spread_boxplot(df_ts_tob):
     df_ts_tob['timestamp'] = df_ts_tob['timestamp'].apply(lambda x: datetime.strptime(x, "%Y-%m-%dT%H:%M:%S.%fZ"))
     df_ts_tob['hour'] = df_ts_tob['timestamp'].dt.hour
     fig = px.box(df_ts_tob, x="hour", y="spread")
-    fig.show()
+    return fig, df_ts_tob
 

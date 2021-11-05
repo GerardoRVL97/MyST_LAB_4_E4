@@ -5,8 +5,7 @@
 # -- script: data.py : python script for data collection                                                 -- #
 # -- author: YOUR GITHUB USER NAME                                                                       -- #
 # -- license: GPL-3.0 License                                                                            -- #
-# -- repository: YOUR REPOSITORY URL                                                                     -- #
+# -- repository: https://github.com/Itzy17/MyST_LAB_4_E4                                                                  -- #
 # -- --------------------------------------------------------------------------------------------------- -- #
 """
 
-dict_test = {'key_a': 'a', 'key_b': 'b', 'key_c': 'c'}

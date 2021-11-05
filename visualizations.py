@@ -8,7 +8,6 @@
 # -- repository: https://github.com/Itzy17/MyST_LAB_4_E4                                                                  -- #
 # -- --------------------------------------------------------------------------------------------------- -- #
 """
-<<<<<<< HEAD
 import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
@@ -47,6 +46,4 @@ def spread_boxplot(df_ts_tob):
     df_ts_tob['hour'] = df_ts_tob['timestamp'].dt.hour
     fig = px.box(df_ts_tob, x="hour", y="spread")
     fig.show()
-=======
 
->>>>>>> c36a99d9e32c085887116fec4a3466c7045ed70b

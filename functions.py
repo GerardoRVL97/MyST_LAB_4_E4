@@ -8,7 +8,6 @@
 # -- repository: https://github.com/Itzy17/MyST_LAB_4_E4                                                                   -- #
 # -- --------------------------------------------------------------------------------------------------- -- #
 """
-<<<<<<< HEAD
 from datetime import timedelta,datetime
 import pandas as pd
 
@@ -26,8 +25,6 @@ def f_compare_ts(ts_list_o, ts_list_d):
     exact_matches = [i for i in unique_dates if (i in (ts_list_o_dt) and i in (ts_list_d_dt))]
     f_compare_ts['exact_match'] = {"qty":len(exact_matches), "values":exact_matches}
     return f_compare_ts
-=======
->>>>>>> c36a99d9e32c085887116fec4a3466c7045ed70b
 
 def historical_spread(ob_data):
     k = list(ob_data.keys())

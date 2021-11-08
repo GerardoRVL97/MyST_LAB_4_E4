@@ -5,11 +5,11 @@
 # -- script: functions.py : python script with general functions                                         -- #
 # -- author: YOUR GITHUB USER NAME                                                                       -- #
 # -- license: GPL-3.0 License                                                                            -- #
-# -- repository: https://github.com/Itzy17/MyST_LAB_4_E4                                                                   -- #
+# -- repository: https://github.com/Itzy17/MyST_LAB_4_E4                                                 -- #
 # -- --------------------------------------------------------------------------------------------------- -- #
 """
 
-from datetime import timedelta,datetime
+from datetime import timedelta, datetime
 import pandas as pd
 
 
@@ -25,7 +25,7 @@ def f_compare_ts(ts_list_o, ts_list_d):
     f_compare_ts['qty_d'] = len(ts_list_d_dt)
     unique_dates = list(dict.fromkeys(ts_list_o_dt + ts_list_d_dt))
     exact_matches = [i for i in unique_dates if (i in (ts_list_o_dt) and i in (ts_list_d_dt))]
-    f_compare_ts['exact_match'] = {"qty": len(exact_matches), "values":exact_matches}
+    f_compare_ts['exact_match'] = {"qty": len(exact_matches), "values": exact_matches}
     return f_compare_ts
 
 

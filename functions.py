@@ -8,8 +8,10 @@
 # -- repository: https://github.com/Itzy17/MyST_LAB_4_E4                                                                   -- #
 # -- --------------------------------------------------------------------------------------------------- -- #
 """
+
 from datetime import timedelta,datetime
 import pandas as pd
+
 
 def f_compare_ts(ts_list_o, ts_list_d):
     ts_list_o_dt = [datetime.strptime(i, "%Y-%m-%dT%H:%M:%S.%fZ") for i in ts_list_o]
@@ -23,8 +25,9 @@ def f_compare_ts(ts_list_o, ts_list_d):
     f_compare_ts['qty_d'] = len(ts_list_d_dt)
     unique_dates = list(dict.fromkeys(ts_list_o_dt + ts_list_d_dt))
     exact_matches = [i for i in unique_dates if (i in (ts_list_o_dt) and i in (ts_list_d_dt))]
-    f_compare_ts['exact_match'] = {"qty":len(exact_matches), "values":exact_matches}
+    f_compare_ts['exact_match'] = {"qty": len(exact_matches), "values":exact_matches}
     return f_compare_ts
+
 
 def historical_spread(ob_data):
     k = list(ob_data.keys())
@@ -43,7 +46,8 @@ def historical_spread(ob_data):
     df_ts_tob["spread"] = spreads
     return df_ts_tob
 
-def detect_outliers(spread_data):
+
+def f_spread_outliers(spread_data):
     spread_data["Outlier"] = True
     for i in spread_data["hour"].unique():
         Q1 = spread_data.query("hour == " + str(i))["spread"].quantile(0.25)

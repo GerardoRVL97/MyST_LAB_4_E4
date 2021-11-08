@@ -8,10 +8,12 @@
 # -- repository: https://github.com/Itzy17/MyST_LAB_4_E4                                                                  -- #
 # -- --------------------------------------------------------------------------------------------------- -- #
 """
+
 import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
-from datetime import timedelta,datetime
+from datetime import timedelta, datetime
+
 
 def orderbook_barchart(ob_data, levels):
     k = list(ob_data.keys())
@@ -34,6 +36,7 @@ def orderbook_barchart(ob_data, levels):
     fig.update_xaxes(type='category')
     fig.show()
 
+
 def spread_graph(df_ts_tob):
     fig = go.Figure()
     fig.add_trace(go.Scatter(x=df_ts_tob['timestamp'], y=df_ts_tob['bid'], name='Bid', mode='lines'))
@@ -41,9 +44,15 @@ def spread_graph(df_ts_tob):
     fig.update_layout(title='SPREAD GRAPH')
     fig.show()
 
+
 def spread_boxplot(df_ts_tob):
     df_ts_tob['timestamp'] = df_ts_tob['timestamp'].apply(lambda x: datetime.strptime(x, "%Y-%m-%dT%H:%M:%S.%fZ"))
     df_ts_tob['hour'] = df_ts_tob['timestamp'].dt.hour
     fig = px.box(df_ts_tob, x="hour", y="spread")
     return fig, df_ts_tob
 
+
+def detect_outliers(spread_data):
+    fig = px.box(spread_data.query("Outlier == False"), x="hour", y="spread", color="hour")
+    fig.update_layout(title='SPREAD WITHOUT OUTLIERS BOXPLOT')
+    return fig.show()

@@ -56,3 +56,9 @@ def detect_outliers(spread_data):
     fig = px.box(spread_data.query("Outlier == False"), x="hour", y="spread", color="hour")
     fig.update_layout(title='SPREAD WITHOUT OUTLIERS BOXPLOT')
     return fig.show()
+
+#%% Edgar
+
+def martingala_hist(pdataframe: 'Martingala DataFrame'):
+    fig = px.histogram(pdataframe, x='Type', y='Zeros vs Non Zeros', color='Type')
+    fig.show()

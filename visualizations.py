@@ -47,3 +47,8 @@ def spread_boxplot(df_ts_tob):
     fig = px.box(df_ts_tob, x="hour", y="spread")
     return fig, df_ts_tob
 
+#%% Edgar
+
+def martingala_hist(pdataframe: 'Martingala DataFrame'):
+    fig = px.histogram(pdataframe, x='Type', y='Zeros vs Non Zeros', color='Type')
+    fig.show()

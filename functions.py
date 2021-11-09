@@ -10,6 +10,7 @@
 """
 from datetime import timedelta,datetime
 import pandas as pd
+import numpy as np
 
 def f_compare_ts(ts_list_o, ts_list_d):
     ts_list_o_dt = [datetime.strptime(i, "%Y-%m-%dT%H:%M:%S.%fZ") for i in ts_list_o]
@@ -53,3 +54,29 @@ def detect_outliers(spread_data):
                 "(hour == " + str(i) + ") and ((@Q1 - 1.5 * @IQR) <= spread <= (@Q3 + 1.5 * @IQR))").index:
             spread_data.at[i, 'Outlier'] = False
     return spread_data
+
+
+#%% Edgar
+
+def martingala(pdataframe: 'DataFrame with data'):
+    mtgala = np.zeros(len(pdataframe['spread']))
+    for i in range(len(pdataframe['spread'])-1):
+        if pdataframe['spread'][i] == pdataframe['spread'][i+1]:
+            mtgala[i+1] = mtgala[i] + 1
+        
+    mtgala = list(map(lambda x: format(x, '.0f'), mtgala))
+    mtgala = list(map(lambda x: int(x), mtgala))
+    
+    mtgala_r = [mtgala[i] for i in range(len(mtgala)-1) if mtgala[i+1] == 0]
+    nonzeros = np.count_nonzero(mtgala_r)
+    zeros = len(mtgala_r) - nonzeros
+    
+    mtgala_pd = pd.DataFrame()
+    mtgala_pd['Type'] = ['Zeros', 'Non Zeros']
+    mtgala_pd['Zeros vs Non Zeros'] = [zeros, nonzeros]
+    
+    return mtgala_pd
+    
+    
+    
+    
